@@ -1,7 +1,7 @@
 # main links links
 main:
   - title: "Resume"
-    url: /publications/
+    url: /cv/
 
   - title: "Python"
     url: /talks/    
@@ -16,7 +16,10 @@ main:
     url: /year-archive/
     
   - title: "Teaching"
-    url: /cv/
+    url: /teaching/
+    
+  - title: "Papers"
+    url: /talks/
     
   - title: "Guide"
     url: /markdown/
