@@ -4,10 +4,10 @@ main:
     url: /cv/
 
   - title: "Python"
-    url: /talks/    
+    url: /portfolio/    
 
   - title: "R"
-    url: /teaching/    
+    url: /portfolio/    
     
   - title: "C++"
     url: /portfolio/
@@ -19,7 +19,7 @@ main:
     url: /teaching/
     
   - title: "Papers"
-    url: /talks/
+    url: /publications/
     
   - title: "Guide"
     url: /markdown/
