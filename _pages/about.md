@@ -7,7 +7,41 @@ redirect_from:
   - /about/
   - /about.html
 ---
-This website serves to house the many projects that I have worked on over the years both as a student and as an employee. The projects, code, presenations, and papers featured on this site were entirely or in part produced by me. 
+
+
+## Introduction
+This website serves to house the many projects that I have worked on over the years both as a student and as an employee. The projects, code, presenations, and papers featured on this site were entirely or in part produced by me. I wanted to create a lasting container for the many things I have, and will work on. As such, This site will house academic assignments, personal projects, and even professional projects (those that are not protected by non-disclosure agreements). For the academic assignments I have tried to the best of my ability to include the instructions or requirements that were provided. (And any code that may have been supplied to assist in completion). I in no way intend to infringe on the intellectual property of the professors who created these assignments, and will give credit to them wherever it is possible.
+
+The site is built on the [GitHub pages](https://pages.github.com) framework, and as such, is itself a repository. All code, projects, and papers can be dowloaded from said repository using the links provided on each respective page. 
+
+
+## Navigation
+To navigate the website, use the top bars to select areas of interest, or use the provided links with descriptions below. 
+
+* [Resume](/cv/)
+A pseudo-CV if you will. An executive summary of the education, work experience, skills and projects I deem relevant. I utilize the web-format to include more information than a one-page resume would allow. 
+
+* [Python](/portfolio/)
+A list of some of the more significant Python data science projects I have worked on - featuring individual analyses, and assignments from Data Science and Python scripting courses. (a combination of [.py](https://fileinfo.com/extension/py) and [.ipynb](https://fileinfo.com/extension/ipynb) files).
+
+* [R](/portfolio/)
+A list of some of the more significant R data science projects I have worked on - featuring individual analyses, and assignments from regression and R scripting courses. (A collection of [.rmd](https://fileinfo.com/extension/rmd) files).
+
+* [C++](/portfolio/)
+A Collection of C++ projects I have worked on over the years. The majority of these projects come from my courses in the computer science department at Brigham Young University. 
+
+* [Presentations](/year-archive/)
+A Collection of the presentations I have worked on. Taken from internships, classes, and individual analyses with permission from those involved. 
+
+* [Teaching](/teaching/)
+A summary of the experiences I have in teaching - mainly summaries of various responsibilities I fulfilled as a teaching assistant in the statistics department at Brigham Young University. 
+
+* [Papers](/publications/)
+A list of papers and writing samples - topics include data science, literature, history, and art. 
+
+
+## Acknowledgements
+This website's structure was taken largely from the [academicpages template](https://github.com/academicpages/academicpages.github.io). This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose.
 
 This is the front page of a website that is powered by the [academicpages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the respository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this repository](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads! An older version of this template powers my own personal website at [stuartgeiger.com](http://stuartgeiger.com), which uses [this Github repository](https://github.com/staeiou/staeiou.github.io).
 
