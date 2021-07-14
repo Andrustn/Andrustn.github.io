@@ -9,12 +9,12 @@ redirect_from:
 
 {% include base_path %}
 
-# Education
-======
+## Education\
+---
 **Brigham Young University**\
 *College of Physical and Mathematical Sciences*\
 B.S. in Data Science, April 2022 (Expected)\
-Minor. in Economics, April 2022 (Expected)\
+Minor. in Economics, April 2022 (Expected)
  * 4.0/4.0 GPA
  * BYU Academic Full Tuition Scholarship
  * BYU Data Science Club Member
@@ -25,9 +25,19 @@ Advanced Studies Diploma, June 2016
  * 4.31 Weighted GPA
  * French Club President
 
-Analysis experience
+Work experience (Chronological)
 ======
-* April 2021 - Present: Course Developer
+* *Data Engineer* Data Crunch **September 2021 - Present**
+  * Did hype things
+  * Freaking kissed girls
+  * I'm so cool
+
+* *Data Analyst Intern* Jp Systems **July 2021 - Present**\
+  * looked at data
+  * did some freaking cool stuff
+  * # hire me pls
+
+* *Course Developer* Brigham Young University **April 2021 - Present**
   * Brigham Young University Statistics Department
   * Duties included: 
   * Supervisor: Professor Git
