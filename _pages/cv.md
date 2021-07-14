@@ -25,7 +25,7 @@ Advanced Studies Diploma, June 2016
  * 4.31 Weighted GPA
  * French Club President
 
-Work experience (Chronological)
+## Work experience
 ======
 * *Data Engineer,* Data Crunch **September 2021 - Present**
   * Did hype things
@@ -47,7 +47,7 @@ Work experience (Chronological)
   * Duties included: Merging pull requests
   * Supervisor: Professor Hub
   
-Skills
+## Skills
 ======
 * Skill 1
 * Skill 2
@@ -56,7 +56,7 @@ Skills
   * Sub-skill 2.3
 * Skill 3
 
-Publications
+## Data Science Projects
 ======
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
@@ -68,12 +68,12 @@ Talks
     {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
   
-Teaching
+## Teaching Experience
 ======
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
+## Volunteer / Leadership Experience
 ======
 * Currently signed in to 43 different slack teams
