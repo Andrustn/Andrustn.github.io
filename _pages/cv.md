@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-## Education\
+## Education
 ---
 **Brigham Young University**\
 *College of Physical and Mathematical Sciences*\
@@ -27,12 +27,12 @@ Advanced Studies Diploma, June 2016
 
 Work experience (Chronological)
 ======
-* *Data Engineer* Data Crunch **September 2021 - Present**
+* *Data Engineer,* Data Crunch **September 2021 - Present**
   * Did hype things
   * Freaking kissed girls
   * I'm so cool
 
-* *Data Analyst Intern* Jp Systems **July 2021 - Present**\
+* ***Data Analyst Intern*** Jp Systems **July 2021 - Present**\
   * looked at data
   * did some freaking cool stuff
   * # hire me pls
