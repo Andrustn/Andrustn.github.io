@@ -1,0 +1,568 @@
+---
+title: "Diamonds"
+author: "<center> Ben Anderson and Trevor Andrus <center>"
+subtitle: <center> <h1>Multiple Linear Regression</h1> </center>
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+<style type="text/css">
+h1.title {
+font-size: 40px;
+text-align: center;
+}
+</style>
+  
+# Import Necessary Packages from R
+```{r}
+library(corrplot)
+library(ggplot2)
+library(ggfortify)
+library(car)
+sz <- 22
+```
+
+# Data and Description
+
+The purpose of this dataset is to determine what factors are most useful in predicting the price of a diamond. Several measurements are taken when describing a diamond, and this study aims to see which of those measurements best determine the price.
+
+This dataset has 53940 observations, but for ease of computation we took a random sample and reduced it to 300. The dataset was provided by a public posting on Kaggle and can be found at www.kaggle.com. We downloaded the CSV file on March 19, 2020. The data presents 9 factors which may potentially be useful in predicting diamond price. Each variable and its explanation is given below (note that 'con' represents a continuous variable and 'cat' represents a categorical variable) :
+
+
+Variable      | Description
+------------- | --------------
+Carat (Con)   | Measures the carat of diamond - ie. weight.
+Cut (Cat)     | Represents the type of diamond cut and has 5 levels: "Fair, "Good", "Very Good", "Ideal" and "Premium".
+Color (Cat)   | Represents the color of the diamond and has 7 levels: (Best) "D", "E", "F", "G", "H", "I", and "J" (Worst).
+Clarity (Cat) | Represents the clarity of the diamond and has 8 levels: (Worst) "I1", "IF", "SI1", "SI2", "VS1", "VS2", "VVS1" and "VVS2" (Best).
+Depth (Con)   | The measurement from the bottom tip of the diamond to the table (top) measured in millimeters but given as a percent
+Table (Con)   | Measures the facet of the diamond and is measured in millimeters, but given as a ratio at which the facet is widest. 
+X (Con)       | Measures diamond length in mm
+Y (Con)       | Measures diamond width in mm
+Z (Con)       | Measures diamond depth in mm
+
+Given our knowledge of the data, we hypothesized that carat, cut, x, y, and z would all have a significant effect on the price of the diamond. Specifically, that as these measurements increase, we predicted that the price of the diamond would also increase accordingly. 
+
+In our analysis we checked the assumptions necessary to perform multiple linear regression. When we found that the raw data did not meet certain assumptions, we applied the necessary methods to clean the data for analysis. We found problems with homoscedasticity, the model fitting all observations, and multicollinearity. To fix the homoscedasticity assumption we performed a log transformation on price. To help the model fit all observations we ran models both with and without the influential points. We noted that the points did not significantly affect the model, and elected to leave them in. Finally, to fix multicollienarity we removed variables that shared a strong linear correlation. Once the assumptions were met, we performed multiple linear regression with price as the response variable, using the remaining variables for prediction. 
+
+We concluded our analysis by evaluating which of the variables were the most important in predicting the price of a diamond, and removed the variables that negatively affected the accuracy of our model. After our regression analysis, we determined that the model we created was very effective in predicting the price of a diamond given certain predictors. 
+
+# Analysis
+
+# Step 1:
+
+Importing data and taking a random sample to reduce computation time
+```{r}
+# setting seed to make the sample reproducible 
+set.seed(12345)
+
+diamonds <- read.csv('diamonds.csv', header = TRUE)
+
+# removing X identifier variable (X was an ID number for each diamond)
+diamonds.s <- diamonds[sample(nrow(diamonds), 300), -1]
+```
+
+# Step 2:
+
+Initial Exploratory Analysis
+```{r}
+# re-arranging columns
+diamonds.s <- diamonds.s[,c(7, 1, 2, 3, 4, 5, 6, 8, 9, 10)]
+head(diamonds.s)
+
+# coercing categorical variables to factors
+diamonds.s[, 3] <- as.factor(diamonds.s[, 3])
+diamonds.s[, 4] <- as.factor(diamonds.s[, 4])
+diamonds.s[, 5] <- as.factor(diamonds.s[, 5])
+
+# checking scatter plot matrix with select variables
+plot(diamonds.s[, c(1, 2, 6, 7, 8, 9, 10)])
+
+# initial check for multicollinearity (removing categorical variables for plot)
+corrplot(cor(diamonds.s[, c(1, 2, 6, 7, 8, 9, 10)]), type = "upper")
+```
+
+From our exploratory data analysis, we noticed several interesting things. Depth appeared to have a negative correlation with all other variables (including price), while the other variables had a positive correlation with price. There is very strong linear correlation between X, Y, Z and Carat. We found this intuitive because diamonds are cut proportionally.(X, Y, and Z must all be related to one another). Knowing this, we address the multicollinearity problem later in our analysis.
+
+# Step 3:
+
+Linear Model
+```{r}
+# creating an initial linear model
+diamonds.s.lm <- lm(price ~. , data = diamonds.s)
+diamonds.s$residuals <- diamonds.s.lm$residuals
+diamonds.s$fitted.values <- diamonds.s.lm$fitted.values
+
+# summary of the linear model
+summary(diamonds.s.lm)
+```
+
+# Step 4: Checking assumptions for linear regression
+
+## Linearity
+
+#### Residuals v Predictor Plots
+```{r}
+# carat
+ggplot(data = diamonds.s, mapping = aes(x = carat, y = residuals)) +
+  geom_point() +
+  geom_point() +
+  theme_bw() +
+  xlab("Residuals") +
+  ylab("Carat") +
+  ggtitle("Residual vs. Carat Plot") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = FALSE)
+
+# table
+ggplot(data = diamonds.s, mapping = aes(x = table, y = residuals)) +
+  geom_point() +
+  geom_point() +
+  theme_bw() +
+  xlab("Residuals") +
+  ylab("Table") +
+  ggtitle("Residual vs. Table Plot") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = FALSE)
+
+# depth
+ggplot(data = diamonds.s, mapping = aes(x = depth, y = residuals)) +
+  geom_point() +
+  geom_point() +
+  theme_bw() +
+  xlab("Residuals") +
+  ylab("Depth") +
+  ggtitle("Residual vs. Depth Plot") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = FALSE)
+
+# x
+ggplot(data = diamonds.s, mapping = aes(x = x, y = residuals)) +
+  geom_point() +
+  geom_point() +
+  theme_bw() +
+  xlab("Residuals") +
+  ylab("X") +
+  ggtitle("Residual vs. X") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = FALSE)
+
+# y
+ggplot(data = diamonds.s, mapping = aes(x = y, y = residuals)) +
+  geom_point() +
+  geom_point() +
+  theme_bw() +
+  xlab("Residuals") +
+  ylab("Y") +
+  ggtitle("Residual vs. Y") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = FALSE)
+
+# z
+ggplot(data = diamonds.s, mapping = aes(x = z, y = residuals)) +
+  geom_point() +
+  geom_point() +
+  theme_bw() +
+  xlab("Residuals") +
+  ylab("Z") +
+  ggtitle("Residual vs. Z") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+#### AV plots
+```{r}
+avPlots(diamonds.s.lm, terms = ~ carat + depth + table + x + y + z)
+```
+
+#### Residual v Fitted Values
+```{r}
+ggplot(data = diamonds.s, mapping = aes(x = fitted.values, y = residuals)) +
+  geom_point() +
+  theme_bw() +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Residuals") +
+  ylab("Fitted Values") +
+  ggtitle("Residuals vs Fitted Value Plot") +
+  geom_smooth(method = 'lm', se = FALSE)
+```
+
+
+After looking at the Residual v Predictor plots, the AV plots, and the residual v fitted plot, we found that the data seemed to follow a fairly linear trend. (None of the plots showed any relationship other than linear), meaning the linearity assumption is met. 
+
+## Independence
+We assume the assumption of indepedent residuals to be met because we took a random sample from a larger data set. 
+
+## Residuals are Normally Distributed and Centered at 0
+
+#### Residual Boxplot
+
+```{r}
+ggplot(data = diamonds.s, mapping = aes(y = residuals)) +
+  geom_boxplot() +
+  ylab("Residuals") +
+  ggtitle("Residuals Boxplot") +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) 
+```
+#### Histogram of Residuals
+
+```{r}
+ggplot(data = diamonds.s, mapping = aes(x = residuals)) + 
+  geom_histogram(mapping = aes(y = ..density..), binwidth = 500) +
+  stat_function(fun = dnorm, color = "red", size = 2,
+                args = list(mean = mean(diamonds.s$residuals), 
+                            sd = sd(diamonds.s$residuals))) + 
+  theme(aspect.ratio = 1)
+```
+
+#### Shapiro-Wilk Test for Normality
+
+```{r}
+shapiro.test(diamonds.s.lm$residuals)
+```
+
+
+Looking at both the boxplot of the residuals and the histogram, it seemed that the residuals were normally distributed around 0. There did seem to be some outliers (which may suggest why we failed the Shapiro-Wilk test for normality). Despite this, we felt that the graphical measures were more convincing than the Shapiro-Wilk test, and continued with the analysis assuming that the normality assumption was met. 
+
+
+## Homoscedasticity (equal variance)
+
+#### Residuals v Fitted values plot
+```{r}
+ggplot(data = diamonds.s, mapping = aes(x = fitted.values, y = residuals)) +
+  geom_point() +
+  theme_bw() +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Residuals") +
+  ylab("Fitted Values") +
+  ggtitle("Residuals vs Fitted Value Plot") +
+  geom_smooth(method = 'lm', se = FALSE)
+```
+
+
+Immediately after viewing this plot, we knew that we would have a problem with homoscedasity. We saw that the points were far more spread out on the upper end of the Residuals axis. We proceeded to do a box-cox analysis and a log transform of the y variable (price) - code is shown below after checking the other assumptions for regression.
+
+
+## Model Describes all Points (No Outliers)
+
+#### DFFITS
+```{r}
+diamonds.s.dffits <- data.frame("dffits" = dffits(diamonds.s.lm))
+diamonds.s.dffits$obs <- 1:length(diamonds.s$price)
+
+ggplot(data = diamonds.s.dffits) +
+  geom_point(mapping = aes(x = obs, y = abs(dffits))) +  
+  geom_hline(mapping = aes(yintercept = 2 * sqrt(9 / length(obs))),
+             color = "red", linetype = "dashed") +  
+  theme_bw() +
+  theme(aspect.ratio = 1)
+
+#diamonds.s.dffits[abs(diamonds.s.dffits$dffits) > 2 * sqrt(9 / 300), ]
+```
+
+#### DFBETAS
+```{r}
+# ## Carat
+# diamonds.s.dfbetas <- as.data.frame(dfbetas(diamonds.s.lm))
+# diamonds.s.dfbetas$obs <- 1:length(diamonds.s$price)
+# 
+# ggplot(data = diamonds.s.dfbetas) +
+#   geom_point(mapping = aes(x = obs, y = abs(carat))) +
+#   geom_hline(mapping = aes(yintercept = 1),
+#              color = "red", linetype = "dashed") +  # for n <= 30
+#   geom_hline(mapping = aes(yintercept = 2 / sqrt(length(obs))),
+#              color = "red", linetype = "dashed") +  # for n > 30
+#   theme_bw() +
+#   theme(aspect.ratio = 1)
+# 
+# carat.extreme.dfbetas <- diamonds.s.dfbetas[abs(diamonds.s.dfbetas$carat) > 1, ]
+# carat.extreme.dfbetas[order(carat.extreme.dfbetas$carat), ]
+# 
+# ##Depth
+# diamonds.s.dfbetas <- as.data.frame(dfbetas(diamonds.s.lm))
+# diamonds.s.dfbetas$obs <- 1:length(diamonds.s$price)
+# 
+# ggplot(data = diamonds.s.dfbetas) +
+#   geom_point(mapping = aes(x = obs, y = abs(depth))) +
+#   geom_hline(mapping = aes(yintercept = 1),
+#              color = "red", linetype = "dashed") +  # for n <= 30
+#   geom_hline(mapping = aes(yintercept = 2 / sqrt(length(obs))),
+#              color = "red", linetype = "dashed") +  # for n > 30
+#   theme_bw() +
+#   theme(aspect.ratio = 1)
+# 
+# depth.extreme.dfbetas <- diamonds.s.dfbetas[abs(diamonds.s.dfbetas$depth) > 1, ]
+# depth.extreme.dfbetas[order(depth.extreme.dfbetas$depth), ]
+# 
+# 
+# ## Table
+# diamonds.s.dfbetas <- as.data.frame(dfbetas(diamonds.s.lm))
+# diamonds.s.dfbetas$obs <- 1:length(diamonds.s$price)
+# 
+# ggplot(data = diamonds.s.dfbetas) +
+#   geom_point(mapping = aes(x = obs, y = abs(table))) +
+#   geom_hline(mapping = aes(yintercept = 1),
+#              color = "red", linetype = "dashed") +  # for n <= 30
+#   geom_hline(mapping = aes(yintercept = 2 / sqrt(length(obs))),
+#              color = "red", linetype = "dashed") +  # for n > 30
+#   theme_bw() +
+#   theme(aspect.ratio = 1)
+# 
+# table.extreme.dfbetas <- diamonds.s.dfbetas[abs(diamonds.s.dfbetas$table) > 1, ]
+# table.extreme.dfbetas[order(table.extreme.dfbetas$table), ]
+# 
+# ## X
+# diamonds.s.dfbetas <- as.data.frame(dfbetas(diamonds.s.lm))
+# diamonds.s.dfbetas$obs <- 1:length(diamonds.s$price)
+# 
+# ggplot(data = diamonds.s.dfbetas) +
+#   geom_point(mapping = aes(x = obs, y = abs(x))) +
+#   geom_hline(mapping = aes(yintercept = 1),
+#              color = "red", linetype = "dashed") +  # for n <= 30
+#   geom_hline(mapping = aes(yintercept = 2 / sqrt(length(obs))),
+#              color = "red", linetype = "dashed") +  # for n > 30
+#   theme_bw() +
+#   theme(aspect.ratio = 1)
+# 
+# x.extreme.dfbetas <- diamonds.s.dfbetas[abs(diamonds.s.dfbetas$x) > 1, ]
+# x.extreme.dfbetas[order(x.extreme.dfbetas$x), ]
+# 
+# ## Y
+# diamonds.s.dfbetas <- as.data.frame(dfbetas(diamonds.s.lm))
+# diamonds.s.dfbetas$obs <- 1:length(diamonds.s$price)
+# 
+# ggplot(data = diamonds.s.dfbetas) +
+#   geom_point(mapping = aes(x = obs, y = abs(y))) +
+#   geom_hline(mapping = aes(yintercept = 1),
+#              color = "red", linetype = "dashed") +  # for n <= 30
+#   geom_hline(mapping = aes(yintercept = 2 / sqrt(length(obs))),
+#              color = "red", linetype = "dashed") +  # for n > 30
+#   theme_bw() +
+#   theme(aspect.ratio = 1)
+# 
+# y.extreme.dfbetas <- diamonds.s.dfbetas[abs(diamonds.s.dfbetas$y) > 1, ]
+# y.extreme.dfbetas[order(y.extreme.dfbetas$y), ]
+# 
+# ## Z
+# diamonds.s.dfbetas <- as.data.frame(dfbetas(diamonds.s.lm))
+# diamonds.s.dfbetas$obs <- 1:length(diamonds.s$price)
+# 
+# ggplot(data = diamonds.s.dfbetas) +
+#   geom_point(mapping = aes(x = obs, y = abs(z))) +
+#   geom_hline(mapping = aes(yintercept = 1),
+#              color = "red", linetype = "dashed") +  # for n <= 30
+#   geom_hline(mapping = aes(yintercept = 2 / sqrt(length(obs))),
+#              color = "red", linetype = "dashed") +  # for n > 30
+#   theme_bw() +
+#   theme(aspect.ratio = 1)
+# 
+# #identifies any observations with a DFBETA greater
+# # than one (as seen on the plot)
+# z.extreme.dfbetas <- diamonds.s.dfbetas[abs(diamonds.s.dfbetas$z) > 1, ]
+# z.extreme.dfbetas[order(z.extreme.dfbetas$z), ]
+```
+
+After viewing the DFFITS and DFBETAS, we saw that we had quite a few points above the benchmark cut off - indicating we may have some influential points. Later in the analysis we run a model both with and without these points to see if they are, in fact, influential. 
+
+## No Multicollinearity
+
+##### Correlation matrix
+```{r}
+#corrplot(cor(diamonds.s[, c(1, 2, 6, 7, 8, 9, 10)]), type = "upper")
+```
+
+#### VIF values
+```{r}
+vif(diamonds.s.lm)
+mean(vif(diamonds.s.lm))
+```
+
+Looking at the Correlation matrix (code is repeated here - for the graph please reference the graphic displayed above), there are many predictor variables that seem to be strongly correlated - particularly the x, y and z variables (we thought this made sense because each of these measures the size of the diamond in slightly different ways). On top of the correlation matrix, the VIF values for these variables are far above 10 (up into the thousands), bringing the average VIF up to 249. It was obvious that our data had problems with multicollinearity, and we apply variable selection methods to fix this below. 
+
+
+# Step 5: Correcting failed assumptions
+
+#### Dealing with Homoscedasity
+
+#### Box-Cox Test
+```{r}
+bc <- boxCox(diamonds.s$price ~ diamonds.s$carat + diamonds.s$cut + diamonds.s$color + diamonds.s$clarity + diamonds.s$depth + diamonds.s$table + diamonds.s$x + diamonds.s$y + diamonds.s$z)
+```
+
+
+After viewing the Box-Cox test, it was apparent that we needed to do a log transform of our response variable. (a lambda value of 0 indicates a log transform). We proceeded to make a new model with the log of price as the response, and again looked at the residual v fitted plot to see if our transformation improved homoscedasticity. 
+
+#### Transforming Price and Creating New Linear Model
+```{r}
+diamonds.s.transform <- diamonds.s
+diamonds.s.transform[,1] <- log(diamonds.s.transform[,1])
+
+diamonds.transform.lm <- lm(price ~. , data = diamonds.s.transform)
+diamonds.s.transform$residuals <- diamonds.transform.lm$residuals
+diamonds.s.transform$fitted.values <- diamonds.transform.lm$fitted.values
+```
+
+#### Residual v Fitted plots
+```{r}
+# original plot (no transformation)
+ggplot(data = diamonds.s, mapping = aes(x = fitted.values, y = residuals)) +
+  geom_point() +
+  theme_bw() +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Residuals") +
+  ylab("Fitted Values") +
+  ggtitle("Residuals vs Fitted Value Plot") +
+  geom_smooth(method = 'lm', se = FALSE)
+
+# log transform plot
+ggplot(data = diamonds.s.transform, mapping = 
+         aes(x = fitted.values, y = residuals)) +
+  geom_point() +
+  theme_bw() +
+  theme(aspect.ratio = 1) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Residuals") +
+  ylab("Fitted Values") +
+  ggtitle("Residuals vs Fitted Value Plot (Transformed)") +
+  geom_smooth(method = 'lm', se = FALSE)
+
+```
+
+
+After viewing the difference in the two plots, we saw that the variance drastically improved, and we continued forward with our transformed model, assuming that the homoscedasity assumption to be met. 
+
+#### Fixing Multicollinearity (variable selection)
+
+To work with the high correlation values of the x, y, z, and clarity variables, we decided it was best to pick only one of these variables to mitigate the effect of multicollinearity. We fit a model with each variable, then picked the model that performed the best. Originally we ran GLMNET with best subsets, but we had some trouble, so we did a best subsets analysis manually with the models shown below. 
+```{r}
+# removing the residual and fitted values columns from the data frame to make 
+          # variable selection possible
+diamonds.s.transform <- diamonds.s.transform[,-c(11,12)]
+
+# the variable named "y" gave us some trouble with GLMNET, so we changed the name to           # "yvar".
+names(diamonds.s.transform) <- c("price", "carat", "cut", "color", "clarity", "depth", "table", "x", "yvar", "z")
+
+# model using clarity
+clarity.model <- lm(price ~ carat + color + clarity, data = diamonds.s.transform)
+
+# model using x
+x.model <- lm(price ~ carat + color + x, data = diamonds.s.transform)
+
+# model using y
+y.model <- lm(price ~ carat + color + yvar, data = diamonds.s.transform)
+
+# model using z
+z.model <- lm(price ~ carat + color + z, data = diamonds.s.transform)
+```
+
+#### Clarity model
+```{r}
+summary(clarity.model)
+```
+#### X model
+```{r}
+#summary(x.model)
+```
+#### Y model
+```{r}
+#summary(y.model)
+```
+#### Z model
+```{r}
+#summary(z.model)
+```
+
+Initially we thought the Y model would be best because it had the highest f statistic and R squared values, but after looking at each correlation matrix individually, we found that the clarity model was the only one to completely eliminate problems with multicollinearity. (VIF values are shown below) The differences between the clarity model and y model in terms of R square and F statistic are pretty small (both return very small p values), so we continued the model using only the clarity variable. (No muliticollinearity assumption is now met)
+
+#### Clarity Model VIFs
+```{r}
+vif(clarity.model)
+mean(vif(clarity.model)[1])
+```
+
+#### Dealing with Outliers
+
+To deal with the potential influential points we saw, we created a model with and without those outliers, then compared the two models to see if the points were, in fact, influential. 
+```{r}
+# creating data frame without flagged DFFIT values
+diamonds.without <- diamonds.s.transform[-diamonds.s.dffits[abs(diamonds.s.dffits$dffits) > 1, ]$obs, ]
+
+# linear model of "without" data frame
+without <- lm(price ~ carat + color + clarity, data = diamonds.without)
+
+# # comparing both models
+# clarity.model
+# without
+
+confint(clarity.model)
+confint(without)
+```
+
+The difference between the two models seemed pretty negligible, so we felt comfortable leaving in the outliers and continuing assuming that the model described all observations. 
+
+# Step 6: Checking Interaction Before Final Analysis
+
+## Interaction Models
+```{r}
+# creating a model including interactions
+clarity.model.int <- lm(price ~ carat + color + clarity + carat:color, data = diamonds.s.transform)
+
+summary(clarity.model.int)
+
+# comparing the two models to see if there is a significant interaction
+anova(clarity.model, clarity.model.int)
+```
+Looking at the output from the ANOVA test, we found a significant interaction between carat and color. We made note of this and continued using the clarity model including interaction terms. 
+
+# Step 7: Model Analysis and Predictions
+
+After manipulating the data to meet linear regression assumptions, we now had a model that fit our data well and felt comfortable using this model to make inferences and predictions.
+
+
+#### Predictions
+
+While the prediction of diamond price my not be very useful for the average person, our findings may still be applicable in certain situations. Suppose a student hopes to predict how much he will need to save in order to buy his fiance a wedding ring that fits her requirements. Suppose that after careful consideration, this student's fiance would like a .4 carat diamond with a "Very Good" cut, "H" color, and a clarity of "SI2".
+#### Prediction and Confidence Intervals
+
+```{r}
+new.data <- data.frame(carat = 0.4, cut = "Very Good", color = "H", clarity = "SI2")
+#Prediction Interval
+log.prediction <- predict(clarity.model.int, newdata = new.data, interval = "prediction")
+(round(exp(log.prediction)[c(2, 1, 3)],  2))
+```
+We are 95% confident that a single diamond with the characteristics specified above (Carat:0.4, Cut:"Very Good", Color:"H", and Clarity:"SI2") will cost between 435.36 and 1419.69 USD. 
+
+```{r}
+new.data <- data.frame(carat = 0.4, cut = "Very Good", color = "H", clarity = "SI2")
+#Confidence Interval
+log.confidence <- predict(clarity.model.int, newdata = new.data, interval = "confidence")
+round(exp(log.confidence)[c(2, 1, 3)], 2)
+```
+We are 95% confident that diamonds with the characteristics specified above (Carat:0.4, Cut:"Very Good", Color:"H", and Clarity:"SI2") will on average cost between 671.39 and 920.58 USD. 
+
+#### Confidence Intervals and R-Squared
+
+```{r}
+confint(clarity.model.int)
+```
+The confidence intervals for the variables give us additional insight into our model. For example we are 95% confident that the price of a diamond increases by between 2.29 and 2.93 USD on average for every one increase in carat, holding all else constant. This is a fairly small interval, as are most of the intervals that are displayed. The intervals have a range of less than one dollar, suggesting that we have a very good idea of how each variable effects diamond price. 
+
+#### R-Squared
+
+Looking at our R squared value, we found that our model fits the data very well. An $R^2$ of .91 indicates that approximately 91% of the variation in the price of a diamond can be explained by our model. 
+
+# Summary and Conclusions
+
+At the end of the day, understanding how a diamond will be priced is not very important to those outside of the diamond business. For those who are, it may be valuable in knowing that we have found that color, cut, clarity and carat are the predictors most important in affecting a diamond's price. Because of the F statistic we recieved from our model, we can safely conclude that at least one of these variables is significant in predicting the price of a diamond. We found that carat and clarity both have a significant positive impact on diamond price. We also found that carat and color share a significant interaction, and have a negative impact on diamond price. 

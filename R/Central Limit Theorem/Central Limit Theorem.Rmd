@@ -1,0 +1,86 @@
+---
+title: "Mini project 1"
+author: "Trevor Andrus"
+date: "3/10/2021"
+output: html_document
+---
+
+```{r}
+# recreating example from khan academy
+possible_values <- 1 : 6
+pmf <- c(0.4, 0.0, 0.1, 0.1, 0.0, 0.4)
+
+# plot data distribution
+plot(possible_values, pmf, type = "h", lty = 2,
+     xlab = "y", ylab = "p(y) = P(Y = y)", main = "Data Distribution",
+     ylim = c(0, 1))
+points(possible_values, pmf, pch = 19)
+
+```
+```{r}
+# creating function to compute sample mean
+
+sampleMean <- function(possibleValues, ppmf, sampleSize) {
+  
+sample <- sample(possibleValues, sampleSize, replace = TRUE, prob = pmf) 
+
+return(mean(sample))
+  
+}
+```
+
+
+```{r}
+sampleMean(possible_values, pmf, sampleSize = 5)
+```
+
+```{r}
+
+createVisualization <- function(NumberYBars, 
+                                FUN = sampleMean,
+                                possibleValues, 
+                                ppmf,
+                                sampleSize) {
+  
+  means <- replicate(NumberYBars, sampleMean(possible_values, pmf, sampleSize))
+  
+  return( (hist(means, freq = FALSE, 
+                main = paste('n = ',sampleSize),
+                ylim = c(0, 1), 
+                xlim = c(0, 6))))
+  
+}
+
+```
+
+```{r}
+createVisualization(10**4, possibleValues = possible_values, ppmf = pmf, sampleSize = 10)
+
+```
+
+```{r}
+# creating a panel of graphics
+
+par(mfrow = c(2, 2))
+plot(possible_values, pmf, type = "h", lty = 2,
+     xlab = "y", ylab = "p(y) = P(Y = y)", main = "Data Distribution",
+     ylim = c(0, 1))
+points(possible_values, pmf, pch = 19)
+createVisualization(10**4, possibleValues = possible_values, ppmf = pmf, sampleSize = 5)
+createVisualization(10**4, possibleValues = possible_values, ppmf = pmf, sampleSize = 10)
+createVisualization(10**4, possibleValues = possible_values, ppmf = pmf, sampleSize = 30)
+
+
+```
+
+
+```{r}
+
+
+
+
+
+
+```
+
+
