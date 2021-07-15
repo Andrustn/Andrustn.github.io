@@ -1,14 +1,14 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
+title: "R Portfolio"
+permalink: /Rportfolio/
 author_profile: true
+redirect_from:
+  - /R
 ---
 
-{% include base_path %}
+## COME GET ME BOYs
+* im finna throw a 
+  * freaking link in here
 
-
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
-
+[LIKE THIS](/R/)
