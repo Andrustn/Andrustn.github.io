@@ -35,17 +35,20 @@ Advanced Studies Diploma, June 2016
   * Did hype things
   * Freaking kissed girls
   * I'm so cool
-
+\
 * *Data Analyst Intern,* Jp Systems **July 2021 - Present**
   * looked at data
   * did some freaking cool stuff
   * hire me pls
-
+\
+\
 * *Course Developer,* Brigham Young University **April 2021 - Present**
   * Drafted instructions for the download and use of essential coding software
   * Designed online course landing page to organize course material
   * Created assignments and organized learning objectives to teach the essentials of statistical programming
-
+\
+\
+\
 * *Teaching Assistant - STAT 250,* Brigham Young University **September 2021 - Present**
   * Held 3x weekly lectures for students learning the basics of Python programming
   * Revised new expirimental class objectives and assignments
@@ -55,13 +58,16 @@ Advanced Studies Diploma, June 2016
   * Tutored students on the basics of Linux operating systems and Bash scripting
   * Explained the importance of automation with AWK files
   * Debugged student's code and held problem solving meetings for virtual machines
-
+\
 * *Teaching Assistant - STAT 226,* Brigham Young University **September 2020 - Present**
   * Tutored students on the basics of SQL programming and remote server access
   * Assisted in creating and querying from remote MySQL databases
   * Helped craft repeatable bash scripts to build and query tables within remote databases
 
 * *Teaching Assistant - STAT 126,* Brigham Young University **September 2020 - Present**
+  * Tutored students on the basics of Python programming
+  * Integration of coding languages (calling R from Python)
+  * Explained the use of common statistical Python packages
 
 * *Teaching Assistant - STAT 240* Brigham Young University **September 2020 - December 2020**
   * Co-Taught 140 students in probability theory and inference of discrete distributions
@@ -72,10 +78,9 @@ Advanced Studies Diploma, June 2016
   * Created interactive database to organize and describe 20 indicators of market success
   * Presented findings with summary statistics, visualizations and recommendations to head of Happify DTx
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* *Project Manager,* Five Star Painting **2019-2020**
+  * Directed painters and customers to establish expectations and bridge language barriers.
+  * Maintained daily communication with customers and supervisors to ensure mutual understanding
   
 ## Skills
 ---
