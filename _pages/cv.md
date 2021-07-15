@@ -122,24 +122,10 @@ Advanced Studies Diploma, June 2016
   * Overseas experience
 * Probability theory
 
-## Data Science Projects
----
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Papers
----
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-## Teaching Experience
----
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
   
 ## Volunteer / Leadership Experience
 ---
-* Currently signed in to 43 different slack teams
+* *Full-time Volunteer Representative,* The Church of Jesus Christ of Latter-day Saints **2016 - 2018**
+  * Trained 30+ volunteers to teach English as a second language
+  * Taught English language and Religious doctrine to 5-10 Korean citizens per week
+  * Organized volunteer service activities for 6-10 volunteers weekly
