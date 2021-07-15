@@ -1,8 +1,8 @@
 ---
 title: "Some beef"
-excerpt: "* I'm really finna
-          * have some bullets
-          * up in this jaunt
+excerpt: "* I'm really finna <br/>
+          * have some bullets <br/>
+          * up in this jaunt <br/>
           <br/>
           <img src='/images/500x300.png'>"
 collection: Pythonportfolio
