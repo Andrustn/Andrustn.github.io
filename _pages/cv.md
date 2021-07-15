@@ -31,15 +31,15 @@ Advanced Studies Diploma, June 2016
 
 ## Work experience
 ======
-#* *Data Engineer,* Data Crunch **September 2021 - Present**
-  #* Did hype things
-  #* Freaking kissed girls
-  #* I'm so cool
+* *Data Engineer,* Data Crunch **September 2021 - Present**
+  * Did hype things
+  * Freaking kissed girls
+ * I'm so cool
 
-#* *Data Analyst Intern,* Jp Systems **July 2021 - Present**
-  #* looked at data
-  #* did some freaking cool stuff
-  #* # hire me pls
+* *Data Analyst Intern,* Jp Systems **July 2021 - Present**
+  * looked at data
+  * did some freaking cool stuff
+  * # hire me pls
 
 * *Course Developer,* Brigham Young University **April 2021 - Present**
   * Brigham Young University Statistics Department
