@@ -12,6 +12,8 @@ author_profile: true
 - Reported on 15 most significant potential partners and competitors
 
 <img src="images/Femtech copy.png?raw=true"/>
+
+<img src="images/Arrests.png?raw=true"/>
 ---
 [Neural Networks](/Presentations/Neural Networks.pdf)
 
