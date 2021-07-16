@@ -13,7 +13,6 @@ author_profile: true
 
 <img src="/images/Femtech copy.png?raw=true"/>
 
-<img src="/images/Arrests.png?raw=true"/>
 ---
 [Neural Networks](/Presentations/Neural Networks.pdf)
 
@@ -21,14 +20,14 @@ author_profile: true
 - Provided conceptual introduction of structure
 - Explained the significance of deep learning
 
-<img src="images/Neural Net copy.png?raw=true"/>
+<img src="/images/Neural Net copy.png"/>
 ---
 [Data Vizualization Poster](/Presentations/The In's and Out's of Data Visualization -3 copy.pdf)
 
 - Provided short explanation on the basics of data vizualization
 - Introduction into categorical and quantitative data
 
-<img src="images/Data Poster copy.png?raw=true"/>
+<img src="/images/Data Poster copy.png"/>
 ---
 
 
