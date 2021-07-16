@@ -1,12 +1,8 @@
 ---
 layout: archive
-title: "Portfolio"
+title: "Presentations"
 permalink: /Presentations/
 author_profile: true
----
-
----
-## Presentations
 ---
 
 [FemTech Analysis](/Presentations/BYU Femtech Landscape Analysis.pdf)
