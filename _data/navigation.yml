@@ -10,10 +10,10 @@ main:
     url: /Rportfolio/    
     
   - title: "C++"
-    url: /C++Portfolio/
+    url: /C++/
         
   - title: "Presentations"
-    url: /year-archive/
+    url: /Presentations/
     
   - title: "Teaching"
     url: /teaching/
