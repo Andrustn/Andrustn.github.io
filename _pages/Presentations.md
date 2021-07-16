@@ -11,9 +11,11 @@ author_profile: true
 - Organized information into interactive browser-based database
 - Reported on 15 most significant potential partners and competitors
 
-<img src="images/Femtech copy.png?raw=true"/>
+<img src='/images/500x300.png'>
 
-<img src="images/Arrests.png?raw=true"/>
+<img src="/images/Femtech copy.png?raw=true"/>
+
+<img src="/images/Arrests.png?raw=true"/>
 ---
 [Neural Networks](/Presentations/Neural Networks.pdf)
 
