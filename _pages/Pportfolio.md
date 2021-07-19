@@ -13,7 +13,9 @@ author_profile: true
 - Performed comprehensivne one and two factor analyses
 
 <img src="/images/Arrests copy.png"/>
+
 ---
+
 [Amazon Book Analysis](https://github.com/Andrustn/Andrustn.github.io/blob/master/Python/Analysis%20Project.ipynb)
 
 - Determined which attributes most impact book price
@@ -21,7 +23,9 @@ author_profile: true
 - Performed multiple linear regression on Amazon Price
 
 <img src="/images/Multiple Linear Regression copy.png"/>
+
 ---
+
 [Titanic Survival Analysis](https://github.com/Andrustn/Andrustn.github.io/blob/master/Python/Test%20:%20Train%20Log%20Regression.py)
 
 - Predicted characteristics of groups of people that were more likely to survive the titanic disaster
