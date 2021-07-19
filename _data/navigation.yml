@@ -4,13 +4,13 @@ main:
     url: /cv/
 
   - title: "Python"
-    url: /non-menu-page/    
+    url: /Pportfolio    
 
   - title: "R"
     url: /Rportfolio/    
     
   - title: "C++"
-    url: /page-archive/
+    url: /Cportfolio/
         
   - title: "Presentations"
     url: /Presentations/
