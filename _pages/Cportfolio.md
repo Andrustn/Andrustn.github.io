@@ -13,6 +13,8 @@ author_profile: true
 
 <img src="/images/Expression Manager copy.png?raw=true"/>
 ---
+---
+
 
 [Online Bakery](https://github.com/Andrustn/Andrustn.github.io/tree/master/C%2B%2B/Bakery)
 
@@ -22,6 +24,8 @@ author_profile: true
 
 <img src="/images/Bakery copy.png?raw=true"/>
 ---
+---
+
 
 [Railroad](https://github.com/Andrustn/Andrustn.github.io/tree/master/C%2B%2B/Railroad)
 
