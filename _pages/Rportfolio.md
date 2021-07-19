@@ -12,7 +12,7 @@ author_profile: true
 
 <img src="/images/Diamonds copy.png"/>
 
----
+**---**
 [Central Limit Theorem Demonstration](https://github.com/Andrustn/Andrustn.github.io/tree/master/R/Central%20Limit%20Theorem)
 
 - Explained and demonstrated concepts of the central limit theorem with examples
