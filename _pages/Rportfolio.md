@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "R Portfolio"
+title: "R Projects"
 permalink: /Rportfolio/
 author_profile: true
 ---
