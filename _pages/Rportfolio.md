@@ -1,6 +1,8 @@
-
 ---
-## R Projects 
+layout: archive
+title: "R Portfolio"
+permalink: /Rportfolio/
+author_profile: true
 ---
 
 [Diamonds Analysis](https://github.com/Andrustn/Andrustn.github.io/tree/master/R/Diamonds)
