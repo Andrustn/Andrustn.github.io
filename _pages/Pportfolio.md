@@ -1,7 +1,7 @@
 ---
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
+title: "Python Portfolio"
+permalink: /Pportfolio/
 author_profile: true
 ---
 
