@@ -4,13 +4,13 @@ main:
     url: /cv/
 
   - title: "Python"
-    url: /_pages/Python.md/    
+    url: /Pportfolio/    
 
   - title: "R"
     url: /Rportfolio/    
     
   - title: "C++"
-    url: /C++/
+    url: /Cportfolio/
         
   - title: "Presentations"
     url: /Presentations/
