@@ -1,14 +1,10 @@
 ---
 layout: archive
-title: "Python Portfolio"
+title: "Python Projects"
 permalink: /Pportfolio/
 author_profile: true
 ---
 
-
----
-## Python Projects
----
 
 [Arrests Analysis](https://github.com/Andrustn/Andrustn.github.io/blob/master/Python/Arrests%20Analysis.ipynb)
 
