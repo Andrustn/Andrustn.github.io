@@ -4,7 +4,7 @@ main:
     url: /cv/
 
   - title: "Python"
-    url: /Python/    
+    url: /_pages/Python.md/    
 
   - title: "R"
     url: /Rportfolio/    
