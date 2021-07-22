@@ -10,10 +10,13 @@ author_profile: true
 > Here lies the power in artificial intelligence – designing computers that can optimize results independently minimizes human error (and effort). 
 
 **---**
-[Central Limit Theorem Demonstration](https://github.com/Andrustn/Andrustn.github.io/tree/master/R/Central%20Limit%20Theorem)
+[Xenia in The Odyssey](/Papers/Odyssey reading response copy.pdf)
 
-- Explained and demonstrated concepts of the central limit theorem with examples
-- Created vizualizations to highlight the normality of increasing sample sizes
+> The themes of xenia permeate the Odyssey – the moral code is both upheld and broken in multiple instances. Homer demonstrates an interesting play on the themes of xenia when Odysseus encounters the cyclops Polyphemus.
 
-<img src="/images/Central Limit copy.png"/>
+
+**---**
+[Sample Conflict Resolution Memo](/Papers/Proposal copy.pdf)
+
+> The lack of dialogue between employees makes it extraordinarily difficult to streamline processes and prevent accidents such as the one we saw this week.
 
