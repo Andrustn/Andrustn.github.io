@@ -30,11 +30,11 @@ A list of some of the more significant R data science projects I have worked on 
 * [C++](/Cportfolio/)\
 A Collection of C++ projects I have worked on over the years. The majority of these projects come from my courses in the computer science department at Brigham Young University. 
 
-* [Presentations](/year-archive/)\
+* [Presentations](/Presentations/)\
 A Collection of the presentations I have worked on. Taken from internships, classes, and individual analyses with permission from those involved. 
 
-* [Teaching](/teaching/)\
-A summary of the experiences I have in teaching - mainly summaries of various responsibilities I fulfilled as a teaching assistant in the statistics department at Brigham Young University. 
+#* [Teaching](/teaching/)\
+#A summary of the experiences I have in teaching - mainly summaries of various responsibilities I fulfilled as a teaching assistant in the statistics department at #Brigham Young University. 
 
 * [Papers](/publications/)\
 A list of papers and writing samples - topics include data science, literature, history, and art. 
