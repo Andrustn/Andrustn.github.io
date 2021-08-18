@@ -33,8 +33,6 @@ A Collection of C++ projects I have worked on over the years. The majority of th
 * [Presentations](/Presentations/)\
 A Collection of the presentations I have worked on. Taken from internships, classes, and individual analyses with permission from those involved. 
 
-#* [Teaching](/teaching/)\
-#A summary of the experiences I have in teaching - mainly summaries of various responsibilities I fulfilled as a teaching assistant in the statistics department at #Brigham Young University. 
 
 * [Papers](/publications/)\
 A list of papers and writing samples - topics include data science, literature, history, and art. 
