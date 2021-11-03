@@ -5,6 +5,16 @@ permalink: /Presentations/
 author_profile: true
 ---
 
+[Inferno Exploration](/Presentations/BYU Femtech Landscape Analysis.pdf)
+
+- Gathered open source information on 100+ Feminine technology companies
+- Organized information into interactive browser-based database
+- Reported on 15 most significant potential partners and competitors
+
+<img src="/images/Femtech copy.png?raw=true"/>
+
+---
+
 [FemTech Analysis](/Presentations/BYU Femtech Landscape Analysis.pdf)
 
 - Gathered open source information on 100+ Feminine technology companies
