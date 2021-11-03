@@ -15,11 +15,8 @@ main:
   - title: "Presentations"
     url: /Presentations/
     
-  - title: "Teaching"
-    url: /teaching/
-    
-  - title: "Papers"
+  - title: "Writing Samples"
     url: /publications/
     
-  - title: "Guide"
-    url: /markdown/
+  #title: "Guide"
+    #url: /markdown/
