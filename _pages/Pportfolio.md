@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 
-[Arrests Analysis](https://github.com/Andrustn/Andrustn.github.io/blob/master/Python/Arrests%20Analysis.ipynb)
+[Arrests Analysis](https://github.com/Andrustn/andrustn.github.io/blob/master/Python/Arrests%20Analysis/Arrests%20Analysis.ipynb)
 
 - Created repeatable query to be automated on a remote server to store data in a Mysql server
 - Queried data from created database into Python for analysis
