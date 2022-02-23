@@ -15,7 +15,7 @@ redirect_from:
 *College of Physical and Mathematical Sciences*\
 B.S. in Data Science, April 2022 (Expected)\
 Minor in Economics, April 2022 (Expected)
- * 4.0/4.0 GPA
+ * 3.99/4.0 GPA
  * BYU Academic Full Tuition Scholarship
  * Member, BYU Data Science Club
  * Member, Phi Kappa Phi (Honor Society)
@@ -31,20 +31,21 @@ Advanced Studies Diploma, June 2016
 
 ## Work experience
 ---
+* *Data Engineer,* DataCrunch Corp **January 2022 - Present**
+  * Created data pipelines to auto-update client databases
+  * Productionalized Python scripts by linking API's with AWS services
+  * Cleaned data to streamline analysis process
 
-* *Data Analyst Intern,* Jp Systems **July 2021 - Present**
+* *Data Analyst Intern,* Jp Systems **July 2021 - December 2021**
   * Explored healthcare interoperability softwares
-  * Automated XML extraction and analysis processes utilizing linux scripting
+  * Automated XML extraction and analysis processes using regular expressions
   * Reported on HL7 healthcare interoperability standards - FHIR implementation
-\
-\
+
 * *Course Developer,* Brigham Young University **April 2021 - Present**
   * Drafted instructions for the download and use of essential coding software
   * Designed online course landing page to organize course material
   * Created assignments and organized learning objectives to teach the essentials of statistical programming
-\
-\
-\
+
 * *Teaching Assistant - STAT 250,* Brigham Young University **September 2021 - Present**
   * Held 3x weekly lectures for students learning the basics of Python programming
   * Revised new expirimental class objectives and assignments
@@ -54,7 +55,7 @@ Advanced Studies Diploma, June 2016
   * Tutored students on the basics of Linux operating systems and Bash scripting
   * Explained the importance of automation with AWK files
   * Debugged student's code and held problem solving meetings for virtual machines
-\
+
 * *Teaching Assistant - STAT 226,* Brigham Young University **September 2020 - Present**
   * Tutored students on the basics of SQL programming and remote server access
   * Assisted in creating and querying from remote MySQL databases
@@ -101,16 +102,18 @@ Advanced Studies Diploma, June 2016
   * Macro and Microeconomic theory
   * Utility maximization
   * Cost minimization
+  * Behavioral economics
+  * Expirimental design
 * Regression
   * Theoretical and computational experience
   * R
   * Python
-* Introductory Machine Learning Algorithms
+* Machine Learning Algorithms
   * Neural networks
   * Decision Trees
   * Cluster analysis
 * Linear / Matrix Algebra
-  * Eigenvectory centrality
+  * Eigenvector centrality
   * Conceptual SEO
 * Korean Language
   * Conversational fluency
