@@ -7,9 +7,10 @@ author_profile: true
 
 [Genre Prediction](https://github.com/Andrustn/andrustn.github.io/tree/master/Python/lyrics)
 
-- Created repeatable query to be automated on a remote server to store data in a Mysql server
-- Queried data from created database into Python for analysis
-- Performed comprehensivne one and two factor analyses
+- Pulled lyric data from Genuis API for 5 Genres
+- Cleaned and vectorized lyrics for NLP analysis
+- Predicted song genre based on lyrics
+- Analyzed accuracy and performed principle component analysis on ideal number of clusters
 
 <img src="/Python/lyrics/Images/Confusion-Matrix.JPG"/>
 
