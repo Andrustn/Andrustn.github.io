@@ -1,12 +1,13 @@
 # Song Genre Classification
+### Trevor Andrus, Sam Johnson, Connor Greenhalgh
 
 ## Introduction
 
-Music genre help listeners comb through an almost endless amount of music to find songs that they enjoy. There are lots of factors that go into deciding what genre a piece of music falls into. Some of these factors include rthyem, tempo, lyrics, and artist. Given this, we were interested in seeing whether a song's genre can be identified by its lyrics alone. Also, since genre is a fluid concept and some songs fall into multiple genres, we want to see how many genre groups an unsupervised learning method think exists.
+Music genre helps listeners cluster songs that they enjoy. A song's genre is decided by a variety of factors, some of which include: rhythm, tempo, lyrics, and key. We are interested in seeing whether a song's genre can be identified by its lyrics alone. We are also interested in how many genres an unsupervised algorithm would deem optimal, given a list of songs. 
 
 ## Data Collection and Cleaning
 
-In order to answer this question we needed lots of song lyrics with a genre associated with each song. To do this we used [genius' api](https://docs.genius.com/) which contains a wide variety of song lyrics from almost every possible genre. Since there are so many genres and even more sub-genres we decided to choose the five main genres according to Genius to see if our model could distinguish between just those five. The genres we selected were country, rock, rap, rhythm and blues, and pop. To select songs for these five genres we looked up the top artists in each genre and pulled their top 50 songs, if they had that many. If an artist was in two different genres we threw them out all together. In the end the number of songs per each genre were
+To build our model, we required a good amount of lyric data. We gathered this data using [genius' api](https://docs.genius.com/) and partitioned our data gathering over 5 genres of interest. The genres we selected were country, rock, rap, r&b, and pop. For our sample, we took the top 50 songs of the top 50 artistis in each genre (if that many songs were available). If an artist was featured in more than one genre, we removed them from our analysis. Our sample resulted in the following totals:
 
 
 | Genre  | Counts |
@@ -18,16 +19,12 @@ In order to answer this question we needed lots of song lyrics with a genre asso
 | Pop  | 1,300  |
 
 
-In order to make the data useable we had to do some cleaning and preprocessing. The first thing we did was remove formating, punctuation, and a tag that was included at the end of each song. Next we removed stop words and lematized the words. Lematizing takes words like start started starting and converts them into the base word, in this case start. Next we tokenized the lyrics so they would be in a format that is useable. We had two methods for doing this. The first method was to count vectorize each word. That created a dataframe in which each row was a song and each column was a word in the dataframe with a count of how many times that word appeared in the song.
-
-The second mehtod used a Tf-idf score. This produces something similar to the first method but instead of a count is now gives each word a weight based on the words frequency in other documents.
-
-Both methods were explored while creating the model. 
+After gathering the data, furthre cleaning and processing was necessary. We began by removing all lyric's punctuation, trademarks, and other tags that were included in the strings returned from the Genius API. We then removed stop words using the default options provided in the nltk packages, and lematized the lyrics. Lematizing describes the process of reducing words with prefixes and suffixes to their base meaning - For example, running becomes run, and waited becomes wait. We then tokenized the lyrics, treating each word as an individual entity. After tokenizing, we then vectorized using two methods: count vectorization, and Tf-idf score. Count vectorization involves creating binary dummy variables representing the existence of each word in a song, and Tf-idf vectorization takes things a step further, and adds weights to words based on their importance. 
 
 
 ## EDA
 
-The follwing tables show the five most common words for each genre, excluding words that don't carry a lot of meaning.
+Exluding stop words, we found the following words to be the most prominent in each genre:
 
 <table>
 <tr><th>Country </th><th>Pop</th><th>Rock</th><th>Rhythm and Blues</th><th>Rap</th></tr>
@@ -85,11 +82,11 @@ The follwing tables show the five most common words for each genre, excluding wo
 
 ## Methods and Results
 
-When it came to choosing a model we looked at 12 different models and split the data into a train and test set. The following graph shows how each of the models performed when trying to predict on the test set.
+We split the model into training and test data, then compared the accuracy of 12 different models to determine which we wanted to move forward with. 
 
 ![ModelPerformance](Images/Model-Performance-Graph.JPG)
 
-The logistic regression model performed the best but we decided to use the random forest model. The reasoning behind this decision is that much of the interpretability associated with a logistic regression model is lost once you have more than two classes and it gets even worse once you have a lot of predictors, and although random forest models aren't particullary intrepretable they do allow us to look at which variables are the most important. Below is the list of words we found most important:
+The logistic regression model seemed to have the highes accuracy, but we chose the to move forward with a random forest model. We chose the random forest for the sake of interperability. Logistic regressions with multiple predictors get fairly hairy when trying to interpret coefficients, and although random forests may not be that much better in this aspect, we could more easily determine the importance of words.  Below is the list of words we found most important for prediction:
 
 | Rank Of Importance  | Word |
 | ------------- | ------------- |
@@ -104,17 +101,21 @@ The logistic regression model performed the best but we decided to use the rando
 | 9  | electric  |
 | 10  | f***  |
 
-When it comes to seeing which genres are easiest to predict, it is most helpful to look at a confusion matrix. The confusion matrix below shows the percentage of the genre predicted in each class.
+After prediction, we looked at the following confusion matrix to see how well our model assigned genres. 
 
 ![ConfusionMatrix](Images/Confusion-Matrix.JPG)
 
-The genre that was predicted with the greatest accuaracy was rap. However our model did especially poor at predicting pop. Rock was often cofused with Country, Pop, and Rythem and Blues. 
+Incedentally, rap by far had the highest prediction accuracy. (Most likely because of its unique and repeated use of profanity).  Rock also had a fairly good predicion accuracy, but its precision was mediocre. We saw many other genres falsely identified as rock. 
 
-When we turned to unsupervised method to determine how many genre there should be a kmeans clustering algorithm didn't produce a clear answer as can be seen below.
+
+We then turned to unsupervised methods in order to determine if the algorithm thought there was another ideal number of clusters besides the 5 genres we originally added. 
 
 ![Clustering](Images/Num-Of-Clusters.JPG)
 
-When we tell the kmeans algorithm that there should be five groups it associated these words with each group
+We didn't find much from the WCSS plot, suggesting there isn't really an "ideal" number of clusters - interestingly, we don't even really see a significant indication that 5 clusters (genres) are especially helpful either.
+
+Going back to our assumed 5 genres, the K means algorithm suggested the following for likely lyrics in each category. 
+(Again from the expletives it is fairly easy to point out the "rap" cluster. With the exception of this cluster, however, it is not very apparent which cluster aligns with which genre. 
 
 | Group  | Words |
 | ------------- | ------------- |
@@ -124,16 +125,18 @@ When we tell the kmeans algorithm that there should be five groups it associated
 | 4  | love want baby heart need never feel say time wanna  |
 | 5  | la na ah da tell feel love song want  |
 
-With the exception of group 3 it is hard to distinguish which group belongs to which genre.
+
+
+
 
 ## Limitations
 
-There were some limitations to our project. One of the main limitations was assigning artists to genres. The genius API was great for pulling songs from an artist but the method to pull songs from a genre tag was very limited; there would've been only around 1500 songs total and country would have only included about 20. So when we decided to scrape songs from the top artists in each genre it created some concern. Some artists are in different genres and some songs might be considered one genre and some songs a different genre. But when we pulled their songs it all went to the same genre.
+Ideally we would have liked to pull songs by genre directly from the Genius API, but that feature seemed limited. We faced quite a few time out errors, and resorted to pulling lyrics by artist specifically. This may lead to errors in what song we place in which genre (because individual artists may consider themselves a blend of multiple genres). 
 
-Another limitation was the date range for our songs. Our artists cover a large time range except for pop which is mostly the 21st century. Because genre's change and reinvent themselves over time, it might make it more difficult to define the cluster. Pulling songs from the same year might make identfying genre easier.
+Song date also serves as another point of concern. With the exception of pop, our sampled data featured songs from multiple decades of music. As such, speech likely changes over time, and may make it harder for our model to correctly identify the genre of a given song. (For example, a rap song from 20 years ago likely differs greatly from rap songs of today). 
 
 ## Conclusion
 
-In conclusion it appears that songs can, for the most, be separated into genre just based on their lyrics. Rap was the only genre that was largely identifiable. However, some genres are more similar that other genres. Rock, rhythm and blues, and pop were the genres that had the most misclassification. 
+In conclusion, we see that sorting songs into genres solely based on lyrics may potentially be feasible, but not practically possible with any sort of reliable accuracy. While we do see fairly good scores in the rap and rock categories, the remaining genres showed fairly dismal outcomes. Our findings could, however, provide the basis for a sort of "Rap song identifier" that can identify in a binary response whether or not a song belongs to the rap genre. However, in this case it may just be easier to create a dictionary of profanity, and compare the lyrics to that dictionary. Particularly, rap was the only genre that used a certain racial slur, and simply looking for that slur in lyrics could prove accurate in identifying the rap genre. 
 
-We feel that although lyrics is probably the most important feature, it likely isn't the only feature. Some extra variables that we could look at when trying to distinguish what genre music belongs to, is song length, word count, music key, number of featured artists, types of notes, and when the song was released. We believe that if we took some of these variables into account that we could get a much better accuaracy. 
+Our analysis goes to show that while lyrics do contribute to what determines a song's genre, there are many more aspects that need to be viewed in unison to make assumptions on a song-by-song bases. Attributes such as a song's beat, tempo, and tonality may serve as better predictiors than just lyrics alone. 
