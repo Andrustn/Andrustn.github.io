@@ -107,10 +107,11 @@ After prediction, we looked at the following confusion matrix to see how well ou
 
 Incedentally, rap by far had the highest prediction accuracy. (Most likely because of its unique and repeated use of profanity).  Rock also had a fairly good predicion accuracy, but its precision was mediocre. We saw many other genres falsely identified as rock. 
 
+![ConfusionMatrix](Images/Confusion-Matrix.JPG)
 
 We then turned to unsupervised methods in order to determine if the algorithm thought there was another ideal number of clusters besides the 5 genres we originally added. 
 
-![Clustering](Images/Num-Of-Clusters.JPG)
+![Clustering](Images/SUMMARY.png)
 
 We didn't find much from the WCSS plot, suggesting there isn't really an "ideal" number of clusters - interestingly, we don't even really see a significant indication that 5 clusters (genres) are especially helpful either.
 
